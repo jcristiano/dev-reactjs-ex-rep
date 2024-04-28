@@ -9,11 +9,6 @@ interface Image {
   alt: string;
 }
 
-interface ImageGalleryProps {
-  images: Image[];
-  onImageRemove: (index: number) => void;
-}
-
 const GalleryContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -24,7 +19,12 @@ const GalleryCard = styled(Card)`
   width: 300px;
   margin: 10px;
   position: relative;
+  transition: box-shadow 0.3s; /* Adiciona uma transição suave */
+  &:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adiciona um contorno mais intenso */
+  }
 `;
+
 
 const DeleteButton = styled(IconButton)`
   position: absolute;

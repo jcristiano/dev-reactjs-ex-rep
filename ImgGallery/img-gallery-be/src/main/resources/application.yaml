@@ -1,0 +1,6 @@
+spring:
+  application.name: img-gallery-be
+
+application:
+  imagens:
+    diretorio: ${APP_IMAGE_REPOSITORY:/tmp/imagens}

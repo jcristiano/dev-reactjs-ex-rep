@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Card, CardActionArea, CardMedia, CardContent, IconButton } from '@mui/material';
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardMedia,
+  CardContent,
+  Dialog,  
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  IconButton
+} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ImageGalleryService from '../../services/ImageGalleryService';
 
@@ -35,6 +46,7 @@ const DeleteButton = styled(IconButton)`
 const ImageGallery: React.FC = () => {
 
   const [ thumbs, setThumbs ] = useState<Image[]>([]);
+  const [ showConfirmDelete, setShowConfirmDelete ] = useState<boolean>(false);
 
   useEffect( () => {
     const fetchDados = async () => {
@@ -44,6 +56,10 @@ const ImageGallery: React.FC = () => {
 
     fetchDados();
   }, []);
+
+  const handleConfirmDelete = () => {
+    setShowConfirmDelete(true);
+  }
 
   return (
     <GalleryContainer>
@@ -60,11 +76,21 @@ const ImageGallery: React.FC = () => {
               {/* You can add additional content here if needed */}
             </CardContent>
           </CardActionArea>
-          <DeleteButton onClick={() => {}}>
+          <DeleteButton onClick={handleConfirmDelete}>
             <DeleteIcon />
           </DeleteButton>
         </GalleryCard>
       ))}
+      <Dialog open={showConfirmDelete} onClose={() => {}}>
+        <DialogTitle>Deseja remover a ilustração</DialogTitle>
+        <DialogContent>
+          Tem certeza que deseja remover a ilustração
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={ () => setShowConfirmDelete(false) }>Nao</Button>
+          <Button onClick={ () => setShowConfirmDelete(false) }>Sim</Button>
+        </DialogActions>
+      </Dialog>
     </GalleryContainer>
   );
 };

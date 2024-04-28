@@ -1,5 +1,7 @@
 package br.com.jcmsilv.devreactjsexrep.imggallerybe.service;
 
+import br.com.jcmsilv.devreactjsexrep.imggallerybe.dto.ImageThumbDTO;
+import br.com.jcmsilv.devreactjsexrep.imggallerybe.model.Image;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,20 +21,23 @@ public class ImageService {
         this.imgRepository = imgRepository;
     }
 
-    public Set<String> getImagens(){
-        List<String> urls = new ArrayList<>();
+    public ImageThumbDTO getImagens(){
+        List<Image> urls = new ArrayList<>();
         Path diretorio = Paths.get(imgRepository);
         if (Files.isDirectory(diretorio)){
             File[] arquivos = diretorio.toFile().listFiles();
             if (arquivos != null){
                 for(File arquivo : arquivos){
                     if (arquivo.isFile() && arquivo.getName().contains("thumb")){
-                        urls.add(arquivo.toPath().getFileName().toString());
+                        String imgName = arquivo.toPath().getFileName().toString();
+                        urls.add(new Image(imgName));
                     }
                 }
             }
         }
         Collections.sort(urls);
-        return new HashSet<>(urls);
+        HashSet<Image> images = new HashSet<>(urls);
+
+        return new ImageThumbDTO(images.size(), images);
     }
 }

@@ -1,5 +1,7 @@
 package br.com.jcmsilv.devreactjsexrep.imggallerybe.controller;
 
+import br.com.jcmsilv.devreactjsexrep.imggallerybe.dto.ImageThumbDTO;
+import br.com.jcmsilv.devreactjsexrep.imggallerybe.model.Image;
 import br.com.jcmsilv.devreactjsexrep.imggallerybe.service.ImageService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ public class ImageController {
     private ImageService imageService;
 
     @GetMapping
-    public ResponseEntity<Set<String>> getImagens(){
+    public ResponseEntity<ImageThumbDTO> getImagens(){
         return ResponseEntity.ok(imageService.getImagens());
     }
 }

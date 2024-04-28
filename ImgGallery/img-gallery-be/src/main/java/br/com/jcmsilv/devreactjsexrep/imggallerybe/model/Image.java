@@ -1,14 +1,13 @@
 package br.com.jcmsilv.devreactjsexrep.imggallerybe.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 
-@AllArgsConstructor
+@Builder
 @Getter
 public class Image implements Comparable<Image> {
-    @NonNull
     private String name;
+    private String alt;
+    private String url;
 
     @Override
     public int compareTo(Image o) {

@@ -1,5 +1,15 @@
 spring:
-  application.name: img-gallery-be
+  application:
+    name: img-gallery-be
+  mvc:
+    cors:
+      mapping:
+        - path: /**
+          allowed-origins: "http://localhost:3000"
+          allowed-methods: GET, POST, PUT, DELETE
+          allowed-headers: "*"
+          allow-credentials: true
+          max-age: 3600
 
 application:
   imagens:

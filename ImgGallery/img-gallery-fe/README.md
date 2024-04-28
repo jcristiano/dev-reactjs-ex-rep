@@ -8,4 +8,5 @@ Exemplo de aplicação desenvolvida em ReactJS para criar uma galeria de imagens
 ```bash
 yarn add styled-components
 yarn add @mui/material @emotion/react @emotion/styled
+yarn add @mui/icons-material
 ```

@@ -4,13 +4,12 @@ import lombok.*;
 
 @Builder
 @Getter
-public class Image implements Comparable<Image> {
+public class Image {
+
+    private Integer id;
     private String name;
     private String alt;
     private String url;
 
-    @Override
-    public int compareTo(Image o) {
-        return name.compareTo(o.name);
-    }
+
 }
